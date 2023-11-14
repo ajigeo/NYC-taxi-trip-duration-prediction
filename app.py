@@ -12,12 +12,12 @@ import folium as fl
 from scipy.spatial import distance
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import OneHotEncoder
-pickle_in = open("C:/Users/arunt/xgb_best_model.pkl","rb")
+pickle_in = open("classifier.pkl","rb")
 classifier = pickle.load(pickle_in)
 
-nta = gpd.read_file("C:/Users/arunt/nyc/nynta2010_22c/nynta2010.shp")
+nta = gpd.read_file("/archive/nynta2010.shp")
 nta_reprojected = nta.to_crs(4326)
-pop = pd.read_csv("C:/Users/arunt/nyc/nynta2010_22c/Census_Demographics_at_the_Neighborhood_Tabulation_Area__NTA__level.csv")
+pop = pd.read_csv("/archive/Census_Demographics_at_the_Neighborhood_Tabulation_Area__NTA__level.csv")
 new_pop = pop[['Geographic Area - Neighborhood Tabulation Area (NTA)* Code','Total Population 2010 Number']]
 new_nta = nta_reprojected.merge(new_pop, how='left', left_on='NTACode', right_on='Geographic Area - Neighborhood Tabulation Area (NTA)* Code')
 new_nta['area_km2'] = new_nta['Shape_Area'].values * 0.00000009290304                           
@@ -142,8 +142,8 @@ def Input_Output():
 
     test_cat = new_test[categorical_features]
     from pickle import load
-    ohe = load(open('C:/Users/arunt/ohe.pkl', 'rb'))
-    ss = load(open('C:/Users/arunt/ss.pkl', 'rb'))
+    ohe = load(open('ohe.pkl', 'rb'))
+    ss = load(open('ss.pkl', 'rb'))
     test_cat_features = ohe.transform(test_cat.values).toarray()
     test_feature_names = ohe.get_feature_names_out(test_cat.columns.values)
 
