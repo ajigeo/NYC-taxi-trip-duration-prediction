@@ -156,7 +156,8 @@ def Input_Output():
     result = ""
     if st.button("Click here to Predict"):
         result = predict_iris_variety(X_test_ss)
-        st.balloons()     
+        st.balloons() 
+    print(result)
     st.success('The estimated trip duration is {} seconds'.format(np.exp(result)-1))
    
 if __name__ ==  '__main__':
