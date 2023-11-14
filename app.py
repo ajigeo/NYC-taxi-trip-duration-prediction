@@ -7,7 +7,7 @@ import pickle
 import warnings
 import datetime
 warnings.filterwarnings("ignore")
-from PIL import Image
+#from PIL import Image
 import folium as fl
 from scipy.spatial import distance
 from sklearn.preprocessing import StandardScaler
@@ -159,7 +159,7 @@ def Input_Output():
         st.balloons()     
     st.success('The estimated trip duration is {} seconds'.format(np.exp(result)-1))
    
-if __name__ ==  '__main__':
-    Input_Output()
+#if __name__ ==  '__main__':
+#    Input_Output()
 
 # https://python.plainenglish.io/build-and-deploy-ml-web-app-in-pythons-streamlit-68428380fac5
