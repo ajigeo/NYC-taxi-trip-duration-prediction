@@ -15,9 +15,9 @@ from sklearn.preprocessing import OneHotEncoder
 pickle_in = open("classifier.pkl","rb")
 classifier = pickle.load(pickle_in)
 
-nta = gpd.read_file("/archive/nynta2010.shp")
+nta = gpd.read_file("archive/nynta2010.shp")
 nta_reprojected = nta.to_crs(4326)
-pop = pd.read_csv("/archive/Census_Demographics_at_the_Neighborhood_Tabulation_Area__NTA__level.csv")
+pop = pd.read_csv("archive/Census_Demographics_at_the_Neighborhood_Tabulation_Area__NTA__level.csv")
 new_pop = pop[['Geographic Area - Neighborhood Tabulation Area (NTA)* Code','Total Population 2010 Number']]
 new_nta = nta_reprojected.merge(new_pop, how='left', left_on='NTACode', right_on='Geographic Area - Neighborhood Tabulation Area (NTA)* Code')
 new_nta['area_km2'] = new_nta['Shape_Area'].values * 0.00000009290304                           
